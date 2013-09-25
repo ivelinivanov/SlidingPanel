@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PanelViewController.h"
 
-@interface ViewController : UIViewController
+@interface ParentViewController : UIViewController <PanelViewControllerDelegate>
 
 @end

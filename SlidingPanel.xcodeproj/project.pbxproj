@@ -14,13 +14,14 @@
 		5528B6D717F2F51C00C5B60F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6D617F2F51C00C5B60F /* main.m */; };
 		5528B6DB17F2F51C00C5B60F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6DA17F2F51C00C5B60F /* AppDelegate.m */; };
 		5528B6DE17F2F51C00C5B60F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5528B6DC17F2F51C00C5B60F /* Main.storyboard */; };
-		5528B6E117F2F51C00C5B60F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6E017F2F51C00C5B60F /* ViewController.m */; };
+		5528B6E117F2F51C00C5B60F /* ParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6E017F2F51C00C5B60F /* ParentViewController.m */; };
 		5528B6E317F2F51C00C5B60F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5528B6E217F2F51C00C5B60F /* Images.xcassets */; };
 		5528B6EA17F2F51C00C5B60F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528B6E917F2F51C00C5B60F /* XCTest.framework */; };
 		5528B6EB17F2F51C00C5B60F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528B6CA17F2F51C00C5B60F /* Foundation.framework */; };
 		5528B6EC17F2F51C00C5B60F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528B6CE17F2F51C00C5B60F /* UIKit.framework */; };
 		5528B6F417F2F51C00C5B60F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5528B6F217F2F51C00C5B60F /* InfoPlist.strings */; };
 		5528B6F617F2F51C00C5B60F /* SlidingPanelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6F517F2F51C00C5B60F /* SlidingPanelTests.m */; };
+		5528B70217F2F6E500C5B60F /* PanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B70017F2F6E500C5B60F /* PanelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +46,16 @@
 		5528B6D917F2F51C00C5B60F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5528B6DA17F2F51C00C5B60F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5528B6DD17F2F51C00C5B60F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5528B6DF17F2F51C00C5B60F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5528B6E017F2F51C00C5B60F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5528B6DF17F2F51C00C5B60F /* ParentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParentViewController.h; sourceTree = "<group>"; };
+		5528B6E017F2F51C00C5B60F /* ParentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParentViewController.m; sourceTree = "<group>"; };
 		5528B6E217F2F51C00C5B60F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5528B6E817F2F51C00C5B60F /* SlidingPanelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlidingPanelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5528B6E917F2F51C00C5B60F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5528B6F117F2F51C00C5B60F /* SlidingPanelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SlidingPanelTests-Info.plist"; sourceTree = "<group>"; };
 		5528B6F317F2F51C00C5B60F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5528B6F517F2F51C00C5B60F /* SlidingPanelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlidingPanelTests.m; sourceTree = "<group>"; };
+		5528B6FF17F2F6E500C5B60F /* PanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelViewController.h; sourceTree = "<group>"; };
+		5528B70017F2F6E500C5B60F /* PanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,9 +118,10 @@
 				5528B6D917F2F51C00C5B60F /* AppDelegate.h */,
 				5528B6DA17F2F51C00C5B60F /* AppDelegate.m */,
 				5528B6DC17F2F51C00C5B60F /* Main.storyboard */,
-				5528B6DF17F2F51C00C5B60F /* ViewController.h */,
-				5528B6E017F2F51C00C5B60F /* ViewController.m */,
-				5528B6E217F2F51C00C5B60F /* Images.xcassets */,
+				5528B6DF17F2F51C00C5B60F /* ParentViewController.h */,
+				5528B6E017F2F51C00C5B60F /* ParentViewController.m */,
+				5528B6FF17F2F6E500C5B60F /* PanelViewController.h */,
+				5528B70017F2F6E500C5B60F /* PanelViewController.m */,
 				5528B6D117F2F51C00C5B60F /* Supporting Files */,
 			);
 			path = SlidingPanel;
@@ -126,6 +130,7 @@
 		5528B6D117F2F51C00C5B60F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5528B6E217F2F51C00C5B60F /* Images.xcassets */,
 				5528B6D217F2F51C00C5B60F /* SlidingPanel-Info.plist */,
 				5528B6D317F2F51C00C5B60F /* InfoPlist.strings */,
 				5528B6D617F2F51C00C5B60F /* main.m */,
@@ -249,9 +254,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5528B6E117F2F51C00C5B60F /* ViewController.m in Sources */,
+				5528B6E117F2F51C00C5B60F /* ParentViewController.m in Sources */,
 				5528B6DB17F2F51C00C5B60F /* AppDelegate.m in Sources */,
 				5528B6D717F2F51C00C5B60F /* main.m in Sources */,
+				5528B70217F2F6E500C5B60F /* PanelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
