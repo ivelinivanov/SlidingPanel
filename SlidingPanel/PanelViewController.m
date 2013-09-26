@@ -20,13 +20,15 @@ typedef NS_ENUM(NSUInteger, PanelGuide)
 {
     CGFloat newOrigin;
     
-    PanelGuide snapGuide;
+    PanelGuide closestGuide;
     
     NSInteger leftEdge;
     NSInteger rightEdge;
     
     NSArray *portraitGuides;
     NSArray *landscapeGuides;
+    
+    NSArray *currentOrientationGuides;
 }
 
 @end
@@ -60,6 +62,8 @@ typedef NS_ENUM(NSUInteger, PanelGuide)
     [super viewDidAppear:animated];
    
     [self calculateGuides];
+    closestGuide = PGPanelHidden;
+    [self snapToGuide:closestGuide];
 }
 
 - (void)calculateGuides
@@ -74,32 +78,56 @@ typedef NS_ENUM(NSUInteger, PanelGuide)
                         @(self.parentViewController.view.frame.size.height - self.view.frame.size.width / 3),
                         @(self.parentViewController.view.frame.size.height - (self.view.frame.size.width - self.contentPanel.frame.size.width))];
     
-    NSLog(@"%@ \n %@", portraitGuides, landscapeGuides);
+    [self setCurrentOrientationGuides];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    [self setCurrentOrientationGuides];
+    
+    [self snapToGuide:closestGuide];
+}
 
+- (void)setCurrentOrientationGuides
+{
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        currentOrientationGuides = portraitGuides;
+    }
+    else if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+    {
+        currentOrientationGuides = landscapeGuides;
+    }
 }
 
 - (void)determineEdges
 {
-    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    leftEdge = [currentOrientationGuides[PGPanelFullyShown] floatValue];
+    rightEdge = [currentOrientationGuides[PGPanelHidden] floatValue];
+}
+
+- (void)getClosestGuideToLocation:(CGFloat)location
+{
+    NSArray *guidesForOrientation;
+    
+    guidesForOrientation = currentOrientationGuides;
+    
+    CGFloat minimalDistance = abs([guidesForOrientation[0] floatValue] - location);
+    closestGuide = 0;
+    
+    for (NSInteger i = 1; i < [guidesForOrientation count]; i++)
     {
-        leftEdge = [portraitGuides[PGPanelFullyShown] floatValue];
-        rightEdge = [portraitGuides[PGPanelHidden] floatValue];
-    }
-    else if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
-    {
-        leftEdge = [landscapeGuides[PGPanelFullyShown] floatValue];
-        rightEdge = [landscapeGuides[PGPanelHidden] floatValue];
+        if (minimalDistance > abs([guidesForOrientation[i] floatValue] - location))
+        {
+            minimalDistance = abs([guidesForOrientation[i] floatValue] - location);
+            closestGuide = i;
+        }
     }
 }
 
-
 - (void)snapToGuide:(PanelGuide)guide
 {
-    [self.delegate panelDidSnapToGuide:guide];
+    [self.delegate panelDidSnapToLocation:[currentOrientationGuides[guide] floatValue]];
 }
 
 - (void)movePanel:(UIPanGestureRecognizer *)panRecognizer
@@ -118,7 +146,8 @@ typedef NS_ENUM(NSUInteger, PanelGuide)
     
     if (panRecognizer.state == UIGestureRecognizerStateEnded)
     {
-
+        [self getClosestGuideToLocation:newOrigin];
+        [self snapToGuide:closestGuide];
     }
 }
 

@@ -33,6 +33,14 @@
     self.panelLeftConstraint.constant = xCoordinate;
 }
 
+- (void)panelDidSnapToLocation:(CGFloat)location
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        self.panelLeftConstraint.constant = location;
+        [self.view layoutIfNeeded];
+    } completion:nil];
+}
+
 #pragma mark - Segue Methods
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -43,12 +51,5 @@
     }
 }
 
-- (void)panelDidSnapToGuide:(CGFloat)guide
-{
-    [UIView animateWithDuration:0.5f animations:^{
-        self.panelLeftConstraint.constant = guide;
-        [self.view layoutIfNeeded];
-    } completion:nil];
-}
 
 @end

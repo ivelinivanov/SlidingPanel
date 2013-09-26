@@ -11,7 +11,7 @@
 @protocol PanelViewControllerDelegate <NSObject>
 
 - (void)panelDidMoveTo:(CGFloat)xCoordinate;
-- (void)panelDidSnapToGuide:(CGFloat)guide;
+- (void)panelDidSnapToLocation:(CGFloat)location;
 
 @end
 
