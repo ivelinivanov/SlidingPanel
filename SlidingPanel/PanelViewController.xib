@@ -8,18 +8,18 @@
             <connections>
                 <outlet property="buttonHeight" destination="960-7b-VbY" id="j5Z-ab-399"/>
                 <outlet property="buttonWidth" destination="BKr-p3-U7Y" id="kww-BX-Xba"/>
-                <outlet property="contentPanel" destination="kkG-0q-nts" id="NhL-YQ-86Z"/>
+                <outlet property="contentPanelView" destination="kkG-0q-nts" id="U2x-V1-SLh"/>
                 <outlet property="panelButton" destination="jMr-e8-SSl" id="jIV-UY-KHX"/>
                 <outlet property="view" destination="1" id="8Pt-2i-L0X"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMr-e8-SSl">
-                    <rect key="frame" x="8" y="443" width="30" height="117"/>
+                    <rect key="frame" x="8" y="453" width="30" height="117"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -40,14 +40,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="kkG-0q-nts" firstAttribute="top" secondItem="1" secondAttribute="top" id="1pu-1d-aOO"/>
-                <constraint firstItem="kkG-0q-nts" firstAttribute="leading" secondItem="jMr-e8-SSl" secondAttribute="trailing" constant="8" id="8Nb-U4-UTF"/>
-                <constraint firstAttribute="trailing" secondItem="kkG-0q-nts" secondAttribute="trailing" id="E4s-OV-CgN"/>
+                <constraint firstItem="kkG-0q-nts" firstAttribute="leading" secondItem="jMr-e8-SSl" secondAttribute="trailing" constant="8" id="6q4-VJ-x1d"/>
                 <constraint firstAttribute="centerY" secondItem="jMr-e8-SSl" secondAttribute="centerY" id="Op2-q7-EKn"/>
-                <constraint firstAttribute="bottom" secondItem="kkG-0q-nts" secondAttribute="bottom" constant="-20" id="Pu5-aW-ncH"/>
                 <constraint firstItem="jMr-e8-SSl" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="Q8s-cg-a5L"/>
+                <constraint firstAttribute="bottom" secondItem="kkG-0q-nts" secondAttribute="bottom" id="dO0-vU-4Er"/>
+                <constraint firstItem="kkG-0q-nts" firstAttribute="top" secondItem="1" secondAttribute="top" id="gpa-fO-him"/>
+                <constraint firstAttribute="trailing" secondItem="kkG-0q-nts" secondAttribute="trailing" id="mbE-uH-9sl"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
 </document>

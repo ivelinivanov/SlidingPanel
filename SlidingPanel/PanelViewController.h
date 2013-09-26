@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) id<PanelViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *panelButton;
-@property (weak, nonatomic) IBOutlet UIView *contentPanel;
+@property (weak, nonatomic) IBOutlet UIView *contentPanelView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
 

@@ -49,7 +49,7 @@
     self.buttonWidth.constant = 40;
     self.buttonHeight.constant = 40;
     
-    self.contentPanel.layer.cornerRadius = 5;
+    self.contentPanelView.layer.cornerRadius = 5;
     self.panelButton.layer.cornerRadius = 20;
 }
 
@@ -66,15 +66,32 @@
 
 - (void)calculateGuides
 {
-    portraitGuides = @[@(self.parentViewController.view.frame.size.width - self.view.frame.size.width),
-                       @(self.parentViewController.view.frame.size.width - 2 * self.view.frame.size.width / 3),
-                       @(self.parentViewController.view.frame.size.width - self.view.frame.size.width / 3),
-                       @(self.parentViewController.view.frame.size.width - (self.view.frame.size.width - self.contentPanel.frame.size.width))];
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        portraitGuides = @[@(self.parentViewController.view.frame.size.width - self.view.frame.size.width),
+                           @(self.parentViewController.view.frame.size.width - 2 * self.view.frame.size.width / 3),
+                           @(self.parentViewController.view.frame.size.width - self.view.frame.size.width / 3),
+                           @(self.parentViewController.view.frame.size.width - (self.view.frame.size.width - self.contentPanelView.frame.size.width))];
+        
+        landscapeGuides = @[@(self.parentViewController.view.frame.size.height - self.view.frame.size.width),
+                            @(self.parentViewController.view.frame.size.height - 2 * self.view.frame.size.width / 3),
+                            @(self.parentViewController.view.frame.size.height - self.view.frame.size.width / 3),
+                            @(self.parentViewController.view.frame.size.height - (self.view.frame.size.width - self.contentPanelView.frame.size.width))];
+    }
+    else if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+    {
+        portraitGuides = @[@(self.parentViewController.view.frame.size.width - self.view.frame.size.height),
+                           @(self.parentViewController.view.frame.size.width - 2 * self.view.frame.size.height / 3),
+                           @(self.parentViewController.view.frame.size.width - self.view.frame.size.height / 3),
+                           @(self.parentViewController.view.frame.size.width - (self.view.frame.size.width - self.contentPanelView.frame.size.width))];
+        
+        landscapeGuides = @[@(self.parentViewController.view.frame.size.height - self.view.frame.size.height),
+                            @(self.parentViewController.view.frame.size.height - 2 * self.view.frame.size.height / 3),
+                            @(self.parentViewController.view.frame.size.height - self.view.frame.size.height / 3),
+                            @(self.parentViewController.view.frame.size.height - (self.view.frame.size.width - self.contentPanelView.frame.size.width))];
+    }
     
-    landscapeGuides = @[@(self.parentViewController.view.frame.size.height - self.view.frame.size.width),
-                        @(self.parentViewController.view.frame.size.height - 2 * self.view.frame.size.width / 3),
-                        @(self.parentViewController.view.frame.size.height - self.view.frame.size.width / 3),
-                        @(self.parentViewController.view.frame.size.height - (self.view.frame.size.width - self.contentPanel.frame.size.width))];
+    NSLog(@"%@ %@", portraitGuides, landscapeGuides);
     
     [self setCurrentOrientationGuides];
 }

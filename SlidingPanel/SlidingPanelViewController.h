@@ -20,5 +20,6 @@
 @interface SlidingPanelViewController : UIViewController <PanelViewControllerDelegate>
 
 @property (weak, nonatomic) id<SlidingPanelDelegate> delegate;
+@property (strong, nonatomic) UIViewController *contentViewController;
 
 @end

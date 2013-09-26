@@ -23,15 +23,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     self.panelViewController = [[PanelViewController alloc] initWithNibName:@"PanelViewController" bundle:[NSBundle mainBundle]];
     [self addChildViewController:self.panelViewController];
     [self.view addSubview:self.panelViewController.view];
+    
+    self.contentViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle] ] instantiateViewControllerWithIdentifier:@"testController"];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
 }
 
 #pragma mark - PanelViewController Delegate Methods
@@ -55,6 +59,24 @@
     } completion:^(BOOL finished) {
         [self.delegate panelDidSnapToGuide:guide];
     }];
+}
+
+#pragma mark - Property Methods
+
+- (void)setContentViewController:(UIViewController *)contentViewController
+{
+    _contentViewController = contentViewController;
+    contentViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+
+    
+    [self.panelViewController addChildViewController:self.contentViewController];
+    self.panelViewController.contentPanelView.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self.panelViewController.contentPanelView  addSubview:self.contentViewController.view ];
+    [self.panelViewController.contentPanelView insertSubview:self.contentViewController.view atIndex:5];
+
+    NSDictionary* viewsDict = @{@"contentView" : self.contentViewController.view};
+    [self.panelViewController.contentPanelView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:viewsDict]];
+    [self.panelViewController.contentPanelView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[contentView]|" options:0 metrics:nil views:viewsDict]];
 }
 
 
