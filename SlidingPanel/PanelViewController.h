@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @protocol PanelViewControllerDelegate <NSObject>
 
 - (void)panelDidMoveTo:(CGFloat)xCoordinate;
-- (void)panelDidSnapToLocation:(CGFloat)location;
+- (void)panelDidSnapToGuide:(PanelGuide)guide location:(CGFloat)location;
 
 @end
 
@@ -20,5 +21,7 @@
 @property (weak, nonatomic) id<PanelViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *panelButton;
 @property (weak, nonatomic) IBOutlet UIView *contentPanel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
 
 @end

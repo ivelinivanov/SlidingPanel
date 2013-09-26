@@ -8,14 +8,6 @@
 
 #import "PanelViewController.h"
 
-typedef NS_ENUM(NSUInteger, PanelGuide)
-{
-    PGPanelFullyShown = 0,
-    PGPanelShownSecondStage,
-    PGPanelShownFirstStage,
-    PGPanelHidden
-};
-
 @interface PanelViewController ()
 {
     CGFloat newOrigin;
@@ -53,8 +45,11 @@ typedef NS_ENUM(NSUInteger, PanelGuide)
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(movePanel:)];
     [self.panelButton addGestureRecognizer:panRecognizer];
     
+    self.buttonWidth.constant = 40;
+    self.buttonHeight.constant = 40;
+    
     self.contentPanel.layer.cornerRadius = 5;
-    self.panelButton.layer.cornerRadius = 5;
+    self.panelButton.layer.cornerRadius = 20;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -127,7 +122,7 @@ typedef NS_ENUM(NSUInteger, PanelGuide)
 
 - (void)snapToGuide:(PanelGuide)guide
 {
-    [self.delegate panelDidSnapToLocation:[currentOrientationGuides[guide] floatValue]];
+    [self.delegate panelDidSnapToGuide:guide location:[currentOrientationGuides[guide] floatValue]];
 }
 
 - (void)movePanel:(UIPanGestureRecognizer *)panRecognizer

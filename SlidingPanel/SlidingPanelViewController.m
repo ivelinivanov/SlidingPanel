@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 MentorMate. All rights reserved.
 //
 
-#import "ParentViewController.h"
+#import "SlidingPanelViewController.h"
 #import "PanelViewController.h"
 
-@interface ParentViewController ()
+@interface SlidingPanelViewController ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *panelLeftConstraint;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -18,12 +18,17 @@
 
 @end
 
-@implementation ParentViewController
+@implementation SlidingPanelViewController
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SlidingPanel" bundle:[NSBundle mainBundle]];
+    
+    return [storyboard instantiateViewControllerWithIdentifier:@"slidingPanelController"];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 }
 
 #pragma mark - PanelViewController Delegate Methods
@@ -33,19 +38,24 @@
     self.panelLeftConstraint.constant = xCoordinate;
 }
 
-- (void)panelDidSnapToLocation:(CGFloat)location
+- (void)panelDidSnapToGuide:(PanelGuide)guide location:(CGFloat)location
 {
+    [self.delegate panelWillSnapToGuide:guide];
+    
     [UIView animateWithDuration:0.5f animations:^{
         self.panelLeftConstraint.constant = location;
         [self.view layoutIfNeeded];
-    } completion:nil];
+    } completion:^(BOOL finished) {
+        [self.delegate panelDidSnapToGuide:guide];
+    }];
 }
 
 #pragma mark - Segue Methods
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"panelSegue"]) {
+    if ([[segue identifier] isEqualToString:@"panelSegue"])
+    {
         self.panelViewController = (PanelViewController *)segue.destinationViewController;
         self.panelViewController.delegate = self;
     }

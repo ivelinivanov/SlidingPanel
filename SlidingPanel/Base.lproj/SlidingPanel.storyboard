@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--Parent View Controller-->
+        <!--Sliding Panel View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ParentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="slidingPanelController" id="BYZ-38-t0r" customClass="SlidingPanelViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FXI-o0-mGH"/>
                         <viewControllerLayoutGuide type="bottom" id="ocK-Mc-Sbh"/>
@@ -57,26 +57,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46i-tx-u0H">
-                                <rect key="frame" x="0.0" y="453" width="30" height="117"/>
+                                <rect key="frame" x="8" y="453" width="30" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="rpf-gg-XpE"/>
                                     <constraint firstAttribute="height" constant="117" id="tri-g2-MIJ"/>
                                 </constraints>
-                                <state key="normal" title="&lt;---">
+                                <state key="normal">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zg2-kK-AkB">
-                                <rect key="frame" x="38" y="0.0" width="730" height="1024"/>
+                                <rect key="frame" x="46" y="0.0" width="722" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="46i-tx-u0H" firstAttribute="leading" secondItem="Zxz-Mx-88l" secondAttribute="leading" id="0QZ-lj-Bi0"/>
+                            <constraint firstItem="46i-tx-u0H" firstAttribute="leading" secondItem="Zxz-Mx-88l" secondAttribute="leading" constant="8" id="0QZ-lj-Bi0"/>
                             <constraint firstItem="Rc9-aq-HTM" firstAttribute="top" secondItem="Zg2-kK-AkB" secondAttribute="bottom" id="Gz4-4i-b7q"/>
                             <constraint firstAttribute="trailing" secondItem="Zg2-kK-AkB" secondAttribute="trailing" id="YZ2-H2-giW"/>
                             <constraint firstItem="Zg2-kK-AkB" firstAttribute="leading" secondItem="46i-tx-u0H" secondAttribute="trailing" constant="8" id="iqD-Nh-NlH"/>
@@ -86,13 +87,15 @@
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="buttonHeight" destination="tri-g2-MIJ" id="yLM-ZK-vQi"/>
+                        <outlet property="buttonWidth" destination="rpf-gg-XpE" id="PNc-U6-Q1J"/>
                         <outlet property="contentPanel" destination="Zg2-kK-AkB" id="mGO-96-bAO"/>
                         <outlet property="panelButton" destination="46i-tx-u0H" id="vBA-05-0K2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kiD-0l-zyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="-130"/>
+            <point key="canvasLocation" x="1183" y="-72"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
