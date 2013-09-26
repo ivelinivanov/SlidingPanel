@@ -13,7 +13,6 @@
 		5528B6D517F2F51C00C5B60F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5528B6D317F2F51C00C5B60F /* InfoPlist.strings */; };
 		5528B6D717F2F51C00C5B60F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6D617F2F51C00C5B60F /* main.m */; };
 		5528B6DB17F2F51C00C5B60F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6DA17F2F51C00C5B60F /* AppDelegate.m */; };
-		5528B6DE17F2F51C00C5B60F /* SlidingPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5528B6DC17F2F51C00C5B60F /* SlidingPanel.storyboard */; };
 		5528B6E117F2F51C00C5B60F /* SlidingPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6E017F2F51C00C5B60F /* SlidingPanelViewController.m */; };
 		5528B6E317F2F51C00C5B60F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5528B6E217F2F51C00C5B60F /* Images.xcassets */; };
 		5528B6EA17F2F51C00C5B60F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528B6E917F2F51C00C5B60F /* XCTest.framework */; };
@@ -22,8 +21,8 @@
 		5528B6F417F2F51C00C5B60F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5528B6F217F2F51C00C5B60F /* InfoPlist.strings */; };
 		5528B6F617F2F51C00C5B60F /* SlidingPanelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B6F517F2F51C00C5B60F /* SlidingPanelTests.m */; };
 		5528B70217F2F6E500C5B60F /* PanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528B70017F2F6E500C5B60F /* PanelViewController.m */; };
-		55EB893E17F45EC400AF47B2 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EB893D17F45EC400AF47B2 /* TestViewController.m */; };
 		55EB894017F45EDD00AF47B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55EB893F17F45EDD00AF47B2 /* Main.storyboard */; };
+		55EB894417F46F2400AF47B2 /* PanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55EB894317F46F2400AF47B2 /* PanelViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +46,6 @@
 		5528B6D817F2F51C00C5B60F /* SlidingPanel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SlidingPanel-Prefix.pch"; sourceTree = "<group>"; };
 		5528B6D917F2F51C00C5B60F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5528B6DA17F2F51C00C5B60F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5528B6DD17F2F51C00C5B60F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SlidingPanel.storyboard; sourceTree = "<group>"; };
 		5528B6DF17F2F51C00C5B60F /* SlidingPanelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlidingPanelViewController.h; sourceTree = "<group>"; };
 		5528B6E017F2F51C00C5B60F /* SlidingPanelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlidingPanelViewController.m; sourceTree = "<group>"; };
 		5528B6E217F2F51C00C5B60F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -59,9 +57,8 @@
 		5528B6FF17F2F6E500C5B60F /* PanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelViewController.h; sourceTree = "<group>"; };
 		5528B70017F2F6E500C5B60F /* PanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelViewController.m; sourceTree = "<group>"; };
 		55EB893A17F43C8400AF47B2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		55EB893C17F45EC400AF47B2 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		55EB893D17F45EC400AF47B2 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		55EB893F17F45EDD00AF47B2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		55EB894317F46F2400AF47B2 /* PanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PanelViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +122,6 @@
 				5528B6DA17F2F51C00C5B60F /* AppDelegate.m */,
 				55EB893B17F45E5700AF47B2 /* SlidingPanelViewController */,
 				5528B6D117F2F51C00C5B60F /* Supporting Files */,
-				55EB893C17F45EC400AF47B2 /* TestViewController.h */,
-				55EB893D17F45EC400AF47B2 /* TestViewController.m */,
 				55EB893F17F45EDD00AF47B2 /* Main.storyboard */,
 			);
 			path = SlidingPanel;
@@ -165,12 +160,12 @@
 		55EB893B17F45E5700AF47B2 /* SlidingPanelViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5528B6DC17F2F51C00C5B60F /* SlidingPanel.storyboard */,
 				55EB893A17F43C8400AF47B2 /* Constants.h */,
 				5528B6DF17F2F51C00C5B60F /* SlidingPanelViewController.h */,
 				5528B6E017F2F51C00C5B60F /* SlidingPanelViewController.m */,
 				5528B6FF17F2F6E500C5B60F /* PanelViewController.h */,
 				5528B70017F2F6E500C5B60F /* PanelViewController.m */,
+				55EB894317F46F2400AF47B2 /* PanelViewController.xib */,
 			);
 			name = SlidingPanelViewController;
 			sourceTree = "<group>";
@@ -253,8 +248,8 @@
 			files = (
 				5528B6E317F2F51C00C5B60F /* Images.xcassets in Resources */,
 				5528B6D517F2F51C00C5B60F /* InfoPlist.strings in Resources */,
-				5528B6DE17F2F51C00C5B60F /* SlidingPanel.storyboard in Resources */,
 				55EB894017F45EDD00AF47B2 /* Main.storyboard in Resources */,
+				55EB894417F46F2400AF47B2 /* PanelViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +272,6 @@
 				5528B6DB17F2F51C00C5B60F /* AppDelegate.m in Sources */,
 				5528B6D717F2F51C00C5B60F /* main.m in Sources */,
 				5528B70217F2F6E500C5B60F /* PanelViewController.m in Sources */,
-				55EB893E17F45EC400AF47B2 /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,14 +300,6 @@
 				5528B6D417F2F51C00C5B60F /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		5528B6DC17F2F51C00C5B60F /* SlidingPanel.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5528B6DD17F2F51C00C5B60F /* Base */,
-			);
-			name = SlidingPanel.storyboard;
 			sourceTree = "<group>";
 		};
 		5528B6F217F2F51C00C5B60F /* InfoPlist.strings */ = {

@@ -19,23 +19,28 @@
 @end
 
 @implementation SlidingPanelViewController
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SlidingPanel" bundle:[NSBundle mainBundle]];
-    
-    return [storyboard instantiateViewControllerWithIdentifier:@"slidingPanelController"];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.panelViewController = [[PanelViewController alloc] initWithNibName:@"PanelViewController" bundle:[NSBundle mainBundle]];
+    [self addChildViewController:self.panelViewController];
+    [self.view addSubview:self.panelViewController.view];
+}
+
 #pragma mark - PanelViewController Delegate Methods
 
 - (void)panelDidMoveTo:(CGFloat)xCoordinate
 {
-    self.panelLeftConstraint.constant = xCoordinate;
+    CGRect newFrame = self.panelViewController.view.frame;
+    newFrame.origin.x = xCoordinate;
+    self.panelViewController.view.frame = newFrame;
 }
 
 - (void)panelDidSnapToGuide:(PanelGuide)guide location:(CGFloat)location
@@ -43,22 +48,13 @@
     [self.delegate panelWillSnapToGuide:guide];
     
     [UIView animateWithDuration:0.5f animations:^{
-        self.panelLeftConstraint.constant = location;
+        CGRect newFrame = self.panelViewController.view.frame;
+        newFrame.origin.x = location;
+        self.panelViewController.view.frame = newFrame;
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         [self.delegate panelDidSnapToGuide:guide];
     }];
-}
-
-#pragma mark - Segue Methods
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"panelSegue"])
-    {
-        self.panelViewController = (PanelViewController *)segue.destinationViewController;
-        self.panelViewController.delegate = self;
-    }
 }
 
 

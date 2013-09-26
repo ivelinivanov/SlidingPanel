@@ -7,6 +7,7 @@
 //
 
 #import "PanelViewController.h"
+#import "SlidingPanelViewController.h"
 
 @interface PanelViewController ()
 {
@@ -55,6 +56,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    self.delegate = (SlidingPanelViewController *)self.parentViewController;
    
     [self calculateGuides];
     closestGuide = PGPanelHidden;
