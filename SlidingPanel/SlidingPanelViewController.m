@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *panelLeftConstraint;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
-@property (strong, nonatomic) PanelViewController *panelViewController;
+@property (strong, nonatomic) PanelViewController *rightViewController;
 
 @end
 
@@ -24,11 +24,9 @@
 {
     [super viewDidLoad];
     
-    self.panelViewController = [[PanelViewController alloc] initWithNibName:@"PanelViewController" bundle:[NSBundle mainBundle]];
-    [self addChildViewController:self.panelViewController];
-    [self.view addSubview:self.panelViewController.view];
-    
-    self.panelOffset = 100;
+    self.rightViewController = [[PanelViewController alloc] initWithNibName:@"PanelViewController" bundle:[NSBundle mainBundle]];
+    [self addChildViewController:self.rightViewController];
+    [self.view addSubview:self.rightViewController.view];
     
     self.contentViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle] ] instantiateViewControllerWithIdentifier:@"testController"];
 }
@@ -44,9 +42,9 @@
 
 - (void)panelDidMoveTo:(CGFloat)xCoordinate
 {
-    CGRect newFrame = self.panelViewController.view.frame;
+    CGRect newFrame = self.rightViewController.view.frame;
     newFrame.origin.x = xCoordinate;
-    self.panelViewController.view.frame = newFrame;
+    self.rightViewController.view.frame = newFrame;
 }
 
 - (void)panelDidSnapToGuide:(PanelGuide)guide location:(CGFloat)location
@@ -54,10 +52,11 @@
     [self.delegate panelWillSnapToGuide:guide];
     
     [UIView animateWithDuration:0.5f animations:^{
-        CGRect newFrame = self.panelViewController.view.frame;
+        
+        CGRect newFrame = self.rightViewController.view.frame;
         newFrame.origin.x = location;
-        self.panelViewController.view.frame = newFrame;
-        [self.view layoutIfNeeded];
+        self.rightViewController.view.frame = newFrame;
+        
     } completion:^(BOOL finished) {
         [self.delegate panelDidSnapToGuide:guide];
     }];
@@ -69,20 +68,28 @@
 {
     _contentViewController = contentViewController;
     contentViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.panelViewController.contentPanelView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.rightViewController.contentPanelView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.panelViewController addChildViewController:self.contentViewController];
-    [self.panelViewController.contentPanelView insertSubview:self.contentViewController.view atIndex:5];
+    [self.rightViewController addChildViewController:self.contentViewController];
+    [self.rightViewController.contentPanelView insertSubview:self.contentViewController.view atIndex:5];
 
     NSDictionary* viewsDict = @{@"contentView" : self.contentViewController.view};
-    [self.panelViewController.contentPanelView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:viewsDict]];
-    [self.panelViewController.contentPanelView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[contentView]|" options:0 metrics:nil views:viewsDict]];
+    [self.rightViewController.contentPanelView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:viewsDict]];
+    [self.rightViewController.contentPanelView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[contentView]|" options:0 metrics:nil views:viewsDict]];
 }
 
 - (void)setPanelOffset:(CGFloat)panelOffset
 {
-    self.panelViewController.panelOffset = panelOffset;
-    _panelOffset = panelOffset;
+    if (panelOffset < 0)
+    {
+        self.rightViewController.panelOffset = 0;
+        _panelOffset = 0;
+    }
+    else
+    {
+        self.rightViewController.panelOffset = panelOffset;
+        _panelOffset = panelOffset;
+    }
 }
 
 @end

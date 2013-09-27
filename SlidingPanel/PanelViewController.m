@@ -25,36 +25,21 @@
 }
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *panelWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonSpace;
 
 @end
 
 @implementation PanelViewController
 
 CGFloat const kEndSlideOffset = 40;
+NSUInteger const kButtonMargin = 8;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(movePanel:)];
-    [self.panelButton addGestureRecognizer:panRecognizer];
-    
-    UISwipeGestureRecognizer *swipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipePanelLeft:)];
-    swipeLeftRecognizer.direction = (UISwipeGestureRecognizerDirectionLeft);
-    [self.view addGestureRecognizer:swipeLeftRecognizer];
-    UISwipeGestureRecognizer *swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipePanelRight:)];
-    swipeRightRecognizer.direction = (UISwipeGestureRecognizerDirectionRight);
-    [self.view addGestureRecognizer:swipeRightRecognizer];
+    [self setUpGestureRecognizers];
     
     self.contentPanelView.layer.cornerRadius = 5;
     self.panelButton.layer.cornerRadius = 20;
@@ -65,75 +50,23 @@ CGFloat const kEndSlideOffset = 40;
     [super viewDidAppear:animated];
     
     self.delegate = (SlidingPanelViewController *)self.parentViewController;
-   
+    
     [self calculateGuides];
     closestGuide = PGPanelHidden;
     [self snapToGuide:closestGuide];
 }
 
-- (void)setPanelOffset:(CGFloat)panelOffset
+- (void)setUpGestureRecognizers
 {
-    _panelOffset = panelOffset;
-    [self calculateGuides];
-}
-
-- (void)calculateGuides
-{
-    [self applyOffsetOnPanel];
+    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(movePanel:)];
+    [self.panelButton addGestureRecognizer:panRecognizer];
     
-    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
-    {
-        portraitGuides = [NSMutableArray arrayWithArray: @[@(self.parentViewController.view.frame.size.width - self.view.frame.size.width),
-                           @(self.parentViewController.view.frame.size.width - 2 * self.view.frame.size.width / 3),
-                           @(self.parentViewController.view.frame.size.width - self.view.frame.size.width / 3),
-                           @(self.parentViewController.view.frame.size.width - (self.buttonSpace.constant))]];
-        
-        landscapeGuides = [NSMutableArray arrayWithArray: @[@(self.parentViewController.view.frame.size.height - self.view.frame.size.height),
-                            @(self.parentViewController.view.frame.size.height - 2 * self.view.frame.size.height / 3),
-                            @(self.parentViewController.view.frame.size.height - self.view.frame.size.height / 3),
-                            @(self.parentViewController.view.frame.size.height - (self.buttonSpace.constant))]];
-    }
-    else if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
-    {
-        portraitGuides = [NSMutableArray arrayWithArray: @[@(self.parentViewController.view.frame.size.width - self.view.frame.size.height),
-                           @(self.parentViewController.view.frame.size.width - 2 * self.view.frame.size.height / 3),
-                           @(self.parentViewController.view.frame.size.width - self.view.frame.size.height / 3),
-                           @(self.parentViewController.view.frame.size.width - (self.buttonSpace.constant))]];
-        
-        landscapeGuides = [NSMutableArray arrayWithArray: @[@(self.parentViewController.view.frame.size.height - self.view.frame.size.width),
-                            @(self.parentViewController.view.frame.size.height - 2 * self.view.frame.size.width / 3),
-                            @(self.parentViewController.view.frame.size.height - self.view.frame.size.width / 3),
-                            @(self.parentViewController.view.frame.size.height - (self.buttonSpace.constant))]];
-    }
-    
-    NSLog(@"%@ %@", portraitGuides, landscapeGuides);
-    [self applyOffsetOnGuides];
-    NSLog(@"%@ %@", portraitGuides, landscapeGuides);
-
-    [self setCurrentOrientationGuides];
-}
-
-- (void)applyOffsetOnPanel
-{
-    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
-    {
-        self.panelWidth.constant = self.parentViewController.view.frame.size.width - self.panelButton.frame.size.width - self.panelOffset - 16;
-    }
-    else if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
-    {
-        self.panelWidth.constant = self.parentViewController.view.frame.size.height - self.panelButton.frame.size.width - self.panelOffset - 16;
-    }
-}
-
-- (void)applyOffsetOnGuides
-{
-    portraitGuides[PGPanelFullyShown] = @([portraitGuides[PGPanelFullyShown] floatValue] + self.panelOffset);
-    portraitGuides[PGPanelShownSecondStage] = @([portraitGuides[PGPanelShownSecondStage] floatValue] +  2 * self.panelOffset / 3);
-    portraitGuides[PGPanelShownFirstStage] = @([portraitGuides[PGPanelShownFirstStage] floatValue] + self.panelOffset / 3);
-
-    landscapeGuides[PGPanelFullyShown] = @([landscapeGuides[PGPanelFullyShown] floatValue] + self.panelOffset);
-    landscapeGuides[PGPanelShownSecondStage] = @([landscapeGuides[PGPanelShownSecondStage] floatValue] +  2 * self.panelOffset / 3);
-    landscapeGuides[PGPanelShownFirstStage] = @([landscapeGuides[PGPanelShownFirstStage] floatValue] + self.panelOffset / 3);
+    UISwipeGestureRecognizer *swipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipePanelLeft:)];
+    swipeLeftRecognizer.direction = (UISwipeGestureRecognizerDirectionLeft);
+    [self.view addGestureRecognizer:swipeLeftRecognizer];
+    UISwipeGestureRecognizer *swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipePanelRight:)];
+    swipeRightRecognizer.direction = (UISwipeGestureRecognizerDirectionRight);
+    [self.view addGestureRecognizer:swipeRightRecognizer];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -144,6 +77,59 @@ CGFloat const kEndSlideOffset = 40;
     
     [self snapToGuide:closestGuide];
 }
+
+#pragma mark - Guide Methods
+
+- (void)calculateGuides
+{
+    [self applyOffsetOnPanel];
+    
+    CGFloat parentFrameWidth = self.parentViewController.view.frame.size.width;
+    CGFloat frameWidth = self.view.frame.size.width;
+    CGFloat thirdFrameWidth = frameWidth / 3;
+    
+    CGFloat parentFrameHeight = self.parentViewController.view.frame.size.height;
+    CGFloat frameHeight = self.view.frame.size.height;
+    CGFloat thirdFrameHeight = frameHeight / 3;
+    
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        portraitGuides = [NSMutableArray arrayWithArray:
+                          @[@(parentFrameWidth - frameWidth),
+                            @(parentFrameWidth - 2 * thirdFrameWidth),
+                            @(parentFrameWidth - thirdFrameWidth),
+                            @(parentFrameWidth - (self.buttonSpace.constant))]];
+        
+        
+        
+        landscapeGuides = [NSMutableArray arrayWithArray:
+                           @[@(parentFrameHeight - frameHeight),
+                             @(parentFrameHeight - 2 * thirdFrameHeight),
+                             @(parentFrameHeight - thirdFrameHeight),
+                             @(parentFrameHeight - (self.buttonSpace.constant))]];
+    }
+    else if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+    {
+        portraitGuides = [NSMutableArray arrayWithArray:
+                          @[@(parentFrameWidth - frameHeight),
+                            @(parentFrameWidth - 2 * thirdFrameHeight),
+                            @(parentFrameWidth - thirdFrameHeight),
+                            @(parentFrameWidth - (self.buttonSpace.constant))]];
+        
+        landscapeGuides = [NSMutableArray arrayWithArray:
+                           @[@(parentFrameHeight - frameWidth),
+                             @(parentFrameHeight - 2 * thirdFrameWidth),
+                             @(parentFrameHeight - thirdFrameWidth),
+                             @(parentFrameHeight - (self.buttonSpace.constant))]];
+    }
+    
+    NSLog(@"%@ %@", portraitGuides, landscapeGuides);
+    [self applyOffsetOnGuides];
+    NSLog(@"%@ %@", portraitGuides, landscapeGuides);
+    
+    [self setCurrentOrientationGuides];
+}
+
 
 - (void)setCurrentOrientationGuides
 {
@@ -207,6 +193,41 @@ CGFloat const kEndSlideOffset = 40;
         [self snapToGuide:closestGuide];
     }
 }
+
+#pragma mark - Offset Methods
+
+- (void)applyOffsetOnGuides
+{
+    CGFloat thirdPanelOffset = self.panelOffset / 3;
+    
+    portraitGuides[PGPanelFullyShown] = @([portraitGuides[PGPanelFullyShown] floatValue] + self.panelOffset);
+    portraitGuides[PGPanelShownSecondStage] = @([portraitGuides[PGPanelShownSecondStage] floatValue] +  2 * thirdPanelOffset);
+    portraitGuides[PGPanelShownFirstStage] = @([portraitGuides[PGPanelShownFirstStage] floatValue] + thirdPanelOffset);
+    
+    landscapeGuides[PGPanelFullyShown] = @([landscapeGuides[PGPanelFullyShown] floatValue] + self.panelOffset);
+    landscapeGuides[PGPanelShownSecondStage] = @([landscapeGuides[PGPanelShownSecondStage] floatValue] +  2 * thirdPanelOffset);
+    landscapeGuides[PGPanelShownFirstStage] = @([landscapeGuides[PGPanelShownFirstStage] floatValue] + thirdPanelOffset);
+}
+
+- (void)applyOffsetOnPanel
+{
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        self.panelWidth.constant = self.parentViewController.view.frame.size.width - self.panelButton.frame.size.width - self.panelOffset - 2 * kButtonMargin;
+    }
+    else if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+    {
+        self.panelWidth.constant = self.parentViewController.view.frame.size.height - self.panelButton.frame.size.width - self.panelOffset - 2 * kButtonMargin;
+    }
+}
+
+- (void)setPanelOffset:(CGFloat)panelOffset
+{
+    _panelOffset = panelOffset;
+    [self calculateGuides];
+}
+
+#pragma mark - Swipe Gesture Methods
 
 - (void)swipePanelLeft:(UISwipeGestureRecognizer *)swipeRecognizer
 {

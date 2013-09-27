@@ -24,7 +24,4 @@
 @property (weak, nonatomic) IBOutlet UIButton *panelButton;
 @property (weak, nonatomic) IBOutlet UIView *contentPanelView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonSpace;
-
-
 @end

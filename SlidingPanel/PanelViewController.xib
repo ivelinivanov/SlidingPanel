@@ -24,7 +24,6 @@
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="960-7b-VbY"/>
-                        <constraint firstAttribute="width" constant="40" id="BKr-p3-U7Y"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal">

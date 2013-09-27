@@ -18,5 +18,6 @@ typedef NS_ENUM(NSUInteger, PanelGuide)
 };
 
 extern CGFloat const kEndSlideOffset;
+extern NSUInteger const kButtonMargin;
 
 #endif
