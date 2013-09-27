@@ -28,6 +28,8 @@
     [self addChildViewController:self.panelViewController];
     [self.view addSubview:self.panelViewController.view];
     
+    self.panelOffset = 100;
+    
     self.contentViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle] ] instantiateViewControllerWithIdentifier:@"testController"];
 }
 
@@ -67,11 +69,9 @@
 {
     _contentViewController = contentViewController;
     contentViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-
+    self.panelViewController.contentPanelView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.panelViewController addChildViewController:self.contentViewController];
-    self.panelViewController.contentPanelView.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self.panelViewController.contentPanelView  addSubview:self.contentViewController.view ];
     [self.panelViewController.contentPanelView insertSubview:self.contentViewController.view atIndex:5];
 
     NSDictionary* viewsDict = @{@"contentView" : self.contentViewController.view};
@@ -79,5 +79,10 @@
     [self.panelViewController.contentPanelView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[contentView]|" options:0 metrics:nil views:viewsDict]];
 }
 
+- (void)setPanelOffset:(CGFloat)panelOffset
+{
+    self.panelViewController.panelOffset = panelOffset;
+    _panelOffset = panelOffset;
+}
 
 @end

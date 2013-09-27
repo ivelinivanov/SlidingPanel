@@ -19,9 +19,12 @@
 @interface PanelViewController : UIViewController
 
 @property (weak, nonatomic) id<PanelViewControllerDelegate> delegate;
+@property (assign, nonatomic) CGFloat panelOffset;
+
 @property (weak, nonatomic) IBOutlet UIButton *panelButton;
 @property (weak, nonatomic) IBOutlet UIView *contentPanelView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonWidth;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonSpace;
+
 
 @end

@@ -21,5 +21,6 @@
 
 @property (weak, nonatomic) id<SlidingPanelDelegate> delegate;
 @property (strong, nonatomic) UIViewController *contentViewController;
+@property (assign, nonatomic) CGFloat panelOffset;
 
 @end

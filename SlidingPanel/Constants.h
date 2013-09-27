@@ -17,4 +17,6 @@ typedef NS_ENUM(NSUInteger, PanelGuide)
     PGPanelHidden
 };
 
+extern CGFloat const kEndSlideOffset;
+
 #endif

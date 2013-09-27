@@ -6,10 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PanelViewController">
             <connections>
-                <outlet property="buttonHeight" destination="960-7b-VbY" id="j5Z-ab-399"/>
-                <outlet property="buttonWidth" destination="BKr-p3-U7Y" id="kww-BX-Xba"/>
+                <outlet property="buttonSpace" destination="OQf-AM-H1H" id="JuK-xL-624"/>
                 <outlet property="contentPanelView" destination="kkG-0q-nts" id="U2x-V1-SLh"/>
                 <outlet property="panelButton" destination="jMr-e8-SSl" id="jIV-UY-KHX"/>
+                <outlet property="panelWidth" destination="bhR-gI-4cP" id="7CC-IU-SKL"/>
                 <outlet property="view" destination="1" id="8Pt-2i-L0X"/>
             </connections>
         </placeholder>
@@ -19,12 +19,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMr-e8-SSl">
-                    <rect key="frame" x="8" y="453" width="30" height="117"/>
+                    <rect key="frame" x="8" y="492" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="117" id="960-7b-VbY"/>
-                        <constraint firstAttribute="width" constant="30" id="BKr-p3-U7Y"/>
+                        <constraint firstAttribute="height" constant="40" id="960-7b-VbY"/>
+                        <constraint firstAttribute="width" constant="40" id="BKr-p3-U7Y"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal">
@@ -32,20 +32,23 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkG-0q-nts">
-                    <rect key="frame" x="46" y="0.0" width="722" height="1024"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkG-0q-nts">
+                    <rect key="frame" x="56" y="0.0" width="712" height="1024"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="712" id="bhR-gI-4cP"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="kkG-0q-nts" firstAttribute="leading" secondItem="jMr-e8-SSl" secondAttribute="trailing" constant="8" id="6q4-VJ-x1d"/>
+                <constraint firstItem="kkG-0q-nts" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="56" id="OQf-AM-H1H"/>
                 <constraint firstAttribute="centerY" secondItem="jMr-e8-SSl" secondAttribute="centerY" id="Op2-q7-EKn"/>
                 <constraint firstItem="jMr-e8-SSl" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="Q8s-cg-a5L"/>
                 <constraint firstAttribute="bottom" secondItem="kkG-0q-nts" secondAttribute="bottom" id="dO0-vU-4Er"/>
                 <constraint firstItem="kkG-0q-nts" firstAttribute="top" secondItem="1" secondAttribute="top" id="gpa-fO-him"/>
-                <constraint firstAttribute="trailing" secondItem="kkG-0q-nts" secondAttribute="trailing" id="mbE-uH-9sl"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
         </view>
