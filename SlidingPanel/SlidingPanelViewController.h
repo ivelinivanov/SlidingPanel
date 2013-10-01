@@ -20,7 +20,7 @@
 @interface SlidingPanelViewController : UIViewController <PanelViewControllerDelegate>
 
 @property (weak, nonatomic) id<SlidingPanelDelegate> delegate;
-@property (strong, nonatomic) UIViewController *contentViewController;
+@property (strong, nonatomic) UIViewController *rightViewController;
 @property (assign, nonatomic) CGFloat panelOffset;
 
 @end
